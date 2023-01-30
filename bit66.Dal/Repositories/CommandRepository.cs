@@ -3,37 +3,9 @@ using bit66.Domain.Interfaces.Repository;
 
 namespace bit66.Dal.Repositories;
 
-public class CommandRepository: ICommandRepository
+public class CommandRepository: GenericRepository<Command>, ICommandRepository
 {
-    private SoccerDbContext _context;
-
-    public CommandRepository(SoccerDbContext context)
+    public CommandRepository(SoccerDbContext context): base(context)
     {
-        _context = context;
-    }
-
-    public Task<Command> FindAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task AddAsync(Command entity)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task EditAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task DeleteAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task SaveAsync()
-    {
-        throw new NotImplementedException();
     }
 }

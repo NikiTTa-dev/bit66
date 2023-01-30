@@ -1,4 +1,5 @@
 ﻿using bit66.Dal.Repositories;
+using bit66.Domain.Interfaces;
 using bit66.Domain.Interfaces.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +15,7 @@ public static class DependencyInjection
         services.AddScoped<ISoccerRepository, SoccerRepository>();
         services.AddScoped<ICountryRepository, CountryRepository>();
         services.AddScoped<ICommandRepository, CommandRepository>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         
         return services;
     }

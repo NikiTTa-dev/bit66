@@ -2,7 +2,7 @@
 
 namespace bit66.Domain.Interfaces.Repository;
 
-public interface ICommandRepository: IRepository<Command>
+public interface ICommandRepository: IGenericRepository<Command>
 {
     
 }

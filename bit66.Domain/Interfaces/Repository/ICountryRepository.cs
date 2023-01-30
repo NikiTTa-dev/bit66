@@ -2,7 +2,7 @@
 
 namespace bit66.Domain.Interfaces.Repository;
 
-public interface ICountryRepository: IRepository<Country>
+public interface ICountryRepository: IGenericRepository<Country>
 {
     
 }

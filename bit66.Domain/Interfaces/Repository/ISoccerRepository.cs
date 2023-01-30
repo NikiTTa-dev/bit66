@@ -2,7 +2,7 @@
 
 namespace bit66.Domain.Interfaces.Repository;
 
-public interface ISoccerRepository: IRepository<SoccerPlayer>
+public interface ISoccerRepository: IGenericRepository<SoccerPlayer>
 {
     
 }

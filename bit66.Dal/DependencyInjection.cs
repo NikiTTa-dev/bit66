@@ -11,7 +11,8 @@ public static class DependencyInjection
     public static IServiceCollection AddDal(this IServiceCollection services, string connectionString)
     {
         services.AddDbContext<SoccerDbContext>(options=>
-            options.UseSqlite(connectionString));
+            options.UseSqlite(connectionString)
+                .EnableSensitiveDataLogging());
         services.AddScoped<ISoccerRepository, SoccerRepository>();
         services.AddScoped<ICountryRepository, CountryRepository>();
         services.AddScoped<ICommandRepository, CommandRepository>();

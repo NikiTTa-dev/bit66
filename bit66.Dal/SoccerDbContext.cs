@@ -9,7 +9,7 @@ public class SoccerDbContext: DbContext
         base(options)
     { }
 
-    public DbSet<SoccerPlayer> Players { get; init; }
-    public DbSet<Country> Countries { get; init; }
-    public DbSet<Command> Commands { get; set; }
+    public DbSet<SoccerPlayer> Players { get; init; } = null!;
+    public DbSet<Country> Countries { get; init; } = null!;
+    public DbSet<Command> Commands { get; set; } = null!;
 }

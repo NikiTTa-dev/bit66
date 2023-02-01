@@ -8,9 +8,9 @@ public interface IGenericRepository<T> where T : EntityBase
     
     Task<T?> FindAsync(int id);
     
-    Task AddAsync(T entity);
+    void Add(T entity);
 
-    Task UpdateAsync(int id, T entity);
+    void Update(T entity);
 
     Task DeleteAsync(int id);
 }

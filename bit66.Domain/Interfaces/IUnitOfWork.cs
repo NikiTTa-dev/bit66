@@ -10,5 +10,5 @@ public interface IUnitOfWork: IDisposable
     
     ICommandRepository Commands { get; }
     
-    Task SaveChanges();
+    Task SaveChangesAsync();
 }

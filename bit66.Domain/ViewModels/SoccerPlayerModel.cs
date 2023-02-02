@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using bit66.Domain.Attributes.Validation;
 
 namespace bit66.Domain.ViewModels;
 
@@ -12,8 +13,9 @@ public class SoccerPlayerModel: ModelBase
     [MaxLength(30)]
     public string LastName { get; set; } = null!;
     
-    [Required]
-    public DateTime BirthDate { get; set; }
+    [Required(ErrorMessage="Введите дату рождения")]
+    [DateTimeMinValue(ErrorMessage = "Дата рождения должна быть раньше сегодняшнего дня")]
+    public DateTime? BirthDate { get; set; }
     
     [Required]
     public CommandModel Command { get; set; } = null!;

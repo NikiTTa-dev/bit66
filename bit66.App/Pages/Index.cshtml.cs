@@ -1,17 +1,33 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using bit66.Domain.Interfaces.Services;
+using bit66.Domain.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace bit66.App.Pages;
 
 public class IndexModel : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
+    public ICommandService CommandService { get; }
+    public ICountryService CountryService { get; }
+    public ISoccerPlayerService PlayerService { get; }
 
-    public IndexModel(ILogger<IndexModel> logger)
+    public IndexModel(
+        ISoccerPlayerService playerService,
+        ICommandService commandService,
+        ICountryService countryService)
     {
-        _logger = logger;
+        CommandService = commandService;
+        CountryService = countryService;
+        PlayerService = playerService;
     }
 
-    public void OnGet()
+    public async Task<IActionResult> OnPostAsync(SoccerPlayerModel playerModel)
     {
+        if (!ModelState.IsValid)
+            return Page();
+
+        await PlayerService.EditPlayerAsync(playerModel);
+
+        return Page();
     }
 }

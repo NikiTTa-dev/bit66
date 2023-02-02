@@ -39,8 +39,8 @@ app.UseAuthorization();
 app.Map("/new", async context =>
 {
     var dbContext = context.RequestServices.GetRequiredService<SoccerDbContext>();
-    dbContext.Database.EnsureDeleted();
-    dbContext.Database.EnsureCreated();
+    //dbContext.Database.EnsureDeleted();
+    //dbContext.Database.EnsureCreated();
     var unitOfWork = context.RequestServices.GetRequiredService<IUnitOfWork>();
     var mockPlayerModel = new SoccerPlayerModel
     {

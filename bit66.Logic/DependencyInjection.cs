@@ -9,6 +9,8 @@ public static class DependencyInjection
     public static IServiceCollection AddLogic(this IServiceCollection services)
     {
         services.AddScoped<ISoccerPlayerService, SoccerPlayerService>();
+        services.AddScoped<ICommandService, CommandService>();
+        services.AddScoped<ICountryService, CountryService>();
         services.AddAutoMapper(typeof(DependencyInjection).Assembly);
 
         return services;

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace bit66.App.Pages;
 
-public class AddPlayer : PageModel
+public class AddPlayerModel : PageModel
 {
     private ISoccerPlayerService _playerService;
     public ICommandService CommandService { get; }
@@ -14,7 +14,7 @@ public class AddPlayer : PageModel
     [BindProperty]
     public SoccerPlayerModel PlayerModel { get; set; } = null!;
     
-    public AddPlayer(
+    public AddPlayerModel(
         ISoccerPlayerService playerService,
         ICommandService commandService,
         ICountryService countryService)

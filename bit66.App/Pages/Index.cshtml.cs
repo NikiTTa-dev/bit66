@@ -10,6 +10,9 @@ public class IndexModel : PageModel
     public ICommandService CommandService { get; }
     public ICountryService CountryService { get; }
     public ISoccerPlayerService PlayerService { get; }
+    
+    [BindProperty]
+    public SoccerPlayerModel PlayerModel { get; set; } = null!;
 
     public IndexModel(
         ISoccerPlayerService playerService,
@@ -21,12 +24,12 @@ public class IndexModel : PageModel
         PlayerService = playerService;
     }
 
-    public async Task<IActionResult> OnPostAsync(SoccerPlayerModel playerModel)
+    public async Task<IActionResult> OnPostAsync()
     {
         if (!ModelState.IsValid)
             return Page();
 
-        await PlayerService.EditPlayerAsync(playerModel);
+        await PlayerService.EditPlayerAsync(PlayerModel);
 
         return Page();
     }

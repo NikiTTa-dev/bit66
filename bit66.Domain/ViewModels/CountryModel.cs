@@ -7,6 +7,6 @@ public class CountryModel: ModelBase
 {
     [Required]
     [MaxLength(30)]
-    [DisplayName("Country")]
+    [DisplayName("Страна")]
     public string Name { get; set; } = null!;
 }

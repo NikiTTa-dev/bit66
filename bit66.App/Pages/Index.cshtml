@@ -4,7 +4,111 @@
     ViewData["Title"] = "Каталог футболистов";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="form-group row mb-2 ">
+    <div class="col">
+        <h1>Каталог футболистов</h1>
+    </div>
+</div>
+
+<div id="accordion">
+    <div class="card">
+        <div class="card-header form-group row">
+            <h5 class="col">Имя</h5>
+            <h5 class="col">Команда</h5>
+            <h5 class="col">Страна</h5>
+            <h5 class="col">Дата рождения</h5>
+        </div>
+    </div>
+    @foreach (var player in await Model.PlayerService.GetAllPlayers())
+    {
+        <div class="card">
+            <div class="card-header form-group row" id="headingOne">
+                <h5 class="mb-0 col">
+                    <button data-bs-target="#collapse-@player.Id" aria-expanded="false" aria-controls="collapse-@player.Id" class="btn btn-link collapsed" data-bs-toggle="collapse">
+                        @player.FirstName @player.LastName
+                    </button>
+                </h5>
+                <p class="col">@player.Command.Name</p>
+                <p class="col">@player.Country.Name</p>
+                <p class="col">@player.BirthDate!.Value.ToString("yyyy'-'MM'-'dd")</p>
+            </div>
+
+            <div id="collapse-@player.Id" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="container border" style="padding: 20px">
+                        <form method="post">
+                            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                            <input type="hidden" asp-for="PlayerModel.Id" value="@player.Id">
+                            <div class="form-group row mb-2">
+                                <div class="col-2">
+                                    <label asp-for="PlayerModel.FirstName"></label>
+                                </div>
+                                <div class="col-5">
+                                    <input type="text" asp-for="PlayerModel.FirstName" class="form-control" value="@player.FirstName"/>
+                                </div>
+                                <span class="text-danger col" asp-validation-for="PlayerModel.FirstName"></span>
+                            </div>
+                            <div class="form-group row mb-2">
+                                <div class="col-2">
+                                    <label asp-for="PlayerModel.LastName"></label>
+                                </div>
+                                <div class="col-5">
+                                    <input type="text" asp-for="PlayerModel.LastName" class="form-control" value="@player.LastName"/>
+                                </div>
+                                <span class="text-danger col" asp-validation-for="PlayerModel.LastName"></span>
+                            </div>
+                            <div class="form-group row mb-2">
+                                <div class="col-2">
+                                    <label asp-for="PlayerModel.Command.Name"></label>
+                                </div>
+                                <div class="col-5">
+                                    <input list="id" asp-for="PlayerModel.Command.Name" class="form-control" value="@player.Command.Name"/>
+                                    <datalist id="id" asp-for="PlayerModel.Command.Name">
+                                        @foreach (var command in await Model.CommandService.GetCommandsAsync())
+                                        {
+                                            <option>@command.Name</option>
+                                        }
+                                    </datalist>
+                                </div>
+                                <span class="text-danger col" asp-validation-for="PlayerModel.Command.Name"></span>
+                            </div>
+                            <div class="form-group row mb-2">
+                                <div class="col-2">
+                                    <label asp-for="PlayerModel.Country.Name"></label>
+                                </div>
+                                <div class="col-5">
+                                    <select asp-for="PlayerModel.Country.Name" class="form-control">
+                                        <option>@player.Country.Name</option>
+                                        @foreach (var country in await Model.CountryService.GetCountriesAsync())
+                                        {
+                                            if (player.Country.Name != country.Name)
+                                            {
+                                                <option>@country.Name</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <span class="text-danger col" asp-validation-for="PlayerModel.Country.Name"></span>
+                            </div>
+                            <div class="form-group row mb-2">
+                                <div class="col-2">
+                                    <label asp-for="PlayerModel.BirthDate"></label>
+                                </div>
+                                <div class="col-5">
+                                    <input type="date" asp-for="PlayerModel.BirthDate" class="form-control" value="@player.BirthDate.Value.ToString("yyyy'-'MM'-'dd")"/>
+                                </div>
+                                <span class="text-danger col" asp-validation-for="PlayerModel.BirthDate"></span>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-2">
+                                    <input type="submit" class="btn btn-primary" value="Изменить"/>
+                                </div>
+                                <div class="col-5"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>

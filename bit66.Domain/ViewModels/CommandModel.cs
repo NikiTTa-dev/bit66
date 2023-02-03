@@ -7,6 +7,6 @@ public class CommandModel: ModelBase
 {
     [Required]
     [MaxLength(30)]
-    [DisplayName("Command")]
+    [DisplayName("Команда")]
     public string Name { get; set; } = null!;
 }

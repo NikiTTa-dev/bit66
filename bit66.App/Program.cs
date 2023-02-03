@@ -1,10 +1,6 @@
+using bit66.App;
 using bit66.Dal;
-using bit66.Domain.Entities;
-using bit66.Domain.Interfaces;
-using bit66.Domain.Interfaces.Services;
-using bit66.Domain.ViewModels;
 using bit66.Logic;
-using Newtonsoft.Json;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,6 +37,7 @@ app.Map("/new", (HttpContext context) =>
     var dbContext = context.RequestServices.GetRequiredService<SoccerDbContext>();
     dbContext.Database.EnsureDeleted();
     dbContext.Database.EnsureCreated();
+    MockData.MockDatabase(dbContext);
 });
 app.MapRazorPages();
 

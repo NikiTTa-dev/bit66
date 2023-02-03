@@ -20,6 +20,10 @@ public class SoccerPlayerModel: ModelBase
     [DateTimeMinValue(ErrorMessage = "Дата рождения должна быть раньше сегодняшнего дня")]
     [DisplayName("Дата рождения")]
     public DateTime? BirthDate { get; set; }
+
+    [Required]
+    [DisplayName("Пол")]
+    public string Gender { get; set; } = null!;
     
     [Required]
     public CommandModel Command { get; set; } = null!;

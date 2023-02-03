@@ -77,6 +77,7 @@ public class SoccerPlayerService : ISoccerPlayerService
         playerEntity.FirstName = player.FirstName;
         playerEntity.LastName = player.LastName;
         playerEntity.BirthDate = player.BirthDate;
+        playerEntity.Gender = player.Gender;
 
         _unitOfWork.Players.Update(playerEntity);
         await _unitOfWork.SaveChangesAsync();

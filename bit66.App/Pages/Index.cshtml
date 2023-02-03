@@ -16,6 +16,7 @@
             <h5 class="col">Имя</h5>
             <h5 class="col">Команда</h5>
             <h5 class="col">Страна</h5>
+            <h5 class="col">Пол</h5>
             <h5 class="col">Дата рождения</h5>
         </div>
     </div>
@@ -30,6 +31,7 @@
                 </h5>
                 <p class="col">@player.Command.Name</p>
                 <p class="col">@player.Country.Name</p>
+                <p class="col">@player.Gender</p>
                 <p class="col">@player.BirthDate!.Value.ToString("yyyy'-'MM'-'dd")</p>
             </div>
 
@@ -89,6 +91,18 @@
                                     </select>
                                 </div>
                                 <span class="text-danger col" asp-validation-for="PlayerModel.Country.Name"></span>
+                            </div>
+                            <div class="form-group row mb-2">
+                                <div class="col-2">
+                                    <label asp-for="PlayerModel.Gender"></label>
+                                </div>
+                                <div class="col-5">
+                                    <select asp-for="PlayerModel.Gender" class="form-control">
+                                        <option>Мужской</option>
+                                        <option>Женский</option>
+                                    </select>
+                                </div>
+                                <span class="text-danger col" asp-validation-for="PlayerModel.Gender"></span>
                             </div>
                             <div class="form-group row mb-2">
                                 <div class="col-2">

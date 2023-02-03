@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using bit66.Dal.Configurations;
 using bit66.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,7 +14,10 @@ public class SoccerDbContext: DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        modelBuilder.ApplyConfiguration(new CommandConfiguration());
+        modelBuilder.ApplyConfiguration(new CountryConfiguration());
+        modelBuilder.ApplyConfiguration(new SoccerPlayerConfiguration());
+        //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 
     public DbSet<Country> Countries { get; init; } = null!;

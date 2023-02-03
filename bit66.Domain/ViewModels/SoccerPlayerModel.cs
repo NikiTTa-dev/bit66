@@ -7,12 +7,12 @@ namespace bit66.Domain.ViewModels;
 public class SoccerPlayerModel: ModelBase
 {
     [Required(ErrorMessage="Введите имя игрока")]
-    [MaxLength(30)]
+    [MaxLength(MaxLengthConfiguration.MaxFirstNameLength)]
     [DisplayName("Имя")]
     public string FirstName { get; set; } = null!;
     
     [Required(ErrorMessage="Введите фамилию игрока")]
-    [MaxLength(30)]
+    [MaxLength(MaxLengthConfiguration.MaxLastNameLength)]
     [DisplayName("Фамилия")]
     public string LastName { get; set; } = null!;
     

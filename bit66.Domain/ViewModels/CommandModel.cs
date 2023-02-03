@@ -6,7 +6,7 @@ namespace bit66.Domain.ViewModels;
 public class CommandModel: ModelBase
 {
     [Required(ErrorMessage="Введите имя команды")]
-    [MaxLength(30)]
+    [MaxLength(MaxLengthConfiguration.MaxCommandNameLength)]
     [DisplayName("Команда")]
     public string Name { get; set; } = null!;
 }

@@ -1,4 +1,5 @@
-﻿using bit66.Domain.Entities;
+﻿using bit66.Domain;
+using bit66.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -9,11 +10,11 @@ public class SoccerPlayerConfiguration : IEntityTypeConfiguration<SoccerPlayer>
     public void Configure(EntityTypeBuilder<SoccerPlayer> builder)
     {
         builder.Property(p => p.FirstName)
-            .HasMaxLength(30)
+            .HasMaxLength(MaxLengthConfiguration.MaxFirstNameLength)
             .IsRequired();
 
         builder.Property(p => p.LastName)
-            .HasMaxLength(30)
+            .HasMaxLength(MaxLengthConfiguration.MaxLastNameLength)
             .IsRequired();
 
         builder.HasOne(p => p.Command)

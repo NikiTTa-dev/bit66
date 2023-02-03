@@ -6,7 +6,7 @@ namespace bit66.Domain.ViewModels;
 public class CountryModel: ModelBase
 {
     [Required(ErrorMessage="Выберите страну")]
-    [MaxLength(30)]
+    [MaxLength(MaxLengthConfiguration.MaxCountryNameLength)]
     [DisplayName("Страна")]
     public string Name { get; set; } = null!;
 }

@@ -6,12 +6,12 @@ namespace bit66.Domain.ViewModels;
 
 public class SoccerPlayerModel: ModelBase
 {
-    [Required]
+    [Required(ErrorMessage="Введите имя игрока")]
     [MaxLength(30)]
     [DisplayName("Имя")]
     public string FirstName { get; set; } = null!;
     
-    [Required]
+    [Required(ErrorMessage="Введите фамилию игрока")]
     [MaxLength(30)]
     [DisplayName("Фамилия")]
     public string LastName { get; set; } = null!;
@@ -21,7 +21,7 @@ public class SoccerPlayerModel: ModelBase
     [DisplayName("Дата рождения")]
     public DateTime? BirthDate { get; set; }
 
-    [Required]
+    [Required(ErrorMessage="Выберите пол")]
     [DisplayName("Пол")]
     public string Gender { get; set; } = null!;
     
